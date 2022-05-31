@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/main.dart';
+import 'package:news_app/settingsscreen/settingsscreen.dart';
 
 class sidemenu extends StatefulWidget {
    Function clearcategroy;
@@ -65,9 +66,13 @@ class _sidemenuState extends State<sidemenu> {
               ImageIcon(AssetImage('assets/images/settings_logo.png')),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('settings',
-                    style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                child: InkWell(onTap: (){
+                  Navigator.pushNamed(context, settingsscreen.ROUTE_NAME);
+                },
+                  child: Text('settings',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                ),
               )
             ],
           ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:news_app/newsscreen/newsscreendesgin.dart';
+import 'package:news_app/settingsscreen/settingsscreen.dart';
 void main(){
   runApp(myapp());
 }
@@ -11,9 +12,10 @@ class myapp extends StatelessWidget{
     return MaterialApp(
       theme:ThemeData(primarySwatch: Palette.kToDark),
       routes: {
-        newsscreendesign.ROUTE_NAME:(context)=>newsscreendesign()
+        newsscreendesign.ROUTE_NAME:(context)=>newsscreendesign(),
+        settingsscreen.ROUTE_NAME:(context)=>settingsscreen()
       },
-      initialRoute: newsscreendesign.ROUTE_NAME,
+      initialRoute: settingsscreen.ROUTE_NAME,
     );
   }
 
