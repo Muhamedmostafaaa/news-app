@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/model/articleresponse.dart';
 
@@ -11,7 +12,12 @@ class articldesign extends StatelessWidget{
 
        children: [
          SizedBox(height: 15,),
-         Image.network(article.urlToImage.toString()),
+     CachedNetworkImage(
+       imageUrl: article.urlToImage.toString(),
+       progressIndicatorBuilder: (context, url, downloadProgress) =>
+           Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+       errorWidget: (context, url, error) => Icon(Icons.error),
+     ),
 
          SizedBox(height: 10,),
         Text(article.source!.name.toString(),textAlign: TextAlign.start,style: TextStyle(color: Color(0xff79828b)),),
