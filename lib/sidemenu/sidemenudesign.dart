@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/main.dart';
 import 'package:news_app/settingsscreen/settingsscreen.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class sidemenu extends StatefulWidget {
    Function clearcategroy;
    sidemenu(this.clearcategroy);
@@ -22,7 +22,7 @@ class _sidemenuState extends State<sidemenu> {
           child: Container(
             margin: EdgeInsets.only(top: 50),
             child: Text(
-              'News App!',
+              AppLocalizations.of(context)!.newsapp,
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -48,7 +48,7 @@ class _sidemenuState extends State<sidemenu> {
                widget.clearcategroy();
                 },
                   child: Text(
-                    'category',
+                    AppLocalizations.of(context)!.category,
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -69,7 +69,7 @@ class _sidemenuState extends State<sidemenu> {
                 child: InkWell(onTap: (){
                   Navigator.pushNamed(context, settingsscreen.ROUTE_NAME);
                 },
-                  child: Text('settings',
+                  child: Text(AppLocalizations.of(context)!.settings,
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 ),

@@ -1,22 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:news_app/newsscreen/newsscreendesgin.dart';
+import 'package:news_app/newsscreen/singlearticledesign.dart';
 import 'package:news_app/settingsscreen/settingsscreen.dart';
+import 'package:provider/provider.dart';
+
+import 'Provider/languageprovider.dart';
 void main(){
   runApp(myapp());
 }
 class myapp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme:ThemeData(primarySwatch: Palette.kToDark),
-      routes: {
-        newsscreendesign.ROUTE_NAME:(context)=>newsscreendesign(),
-        settingsscreen.ROUTE_NAME:(context)=>settingsscreen()
-      },
-      initialRoute: settingsscreen.ROUTE_NAME,
-    );
+    return
+
+      ChangeNotifierProvider(
+       create: (context)=>Languageprovider(),
+        builder: (context,widget){
+         final langprovider=Provider.of<Languageprovider>(context);
+         return MaterialApp(
+           localizationsDelegates: [
+             AppLocalizations.delegate, // Add this line
+             GlobalMaterialLocalizations.delegate,
+             GlobalWidgetsLocalizations.delegate,
+             GlobalCupertinoLocalizations.delegate,
+           ],
+           supportedLocales: [
+             Locale('en', ''), // English, no country code
+             Locale('ar', ''), // Spanish, no country code
+           ],
+           locale:Locale(langprovider.local, '') ,
+           theme:ThemeData(primarySwatch: Palette.kToDark),
+           routes: {
+             newsscreendesign.ROUTE_NAME:(context)=>newsscreendesign(),
+             settingsscreen.ROUTE_NAME:(context)=>settingsscreen(),
+             singlearticldesign.ROUTE_NAME:(context)=>singlearticldesign()
+           },
+           initialRoute: newsscreendesign.ROUTE_NAME,
+         );
+        },
+      );
   }
 
 }

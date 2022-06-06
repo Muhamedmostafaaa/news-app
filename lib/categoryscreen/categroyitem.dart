@@ -28,10 +28,13 @@ class categroyitem extends StatelessWidget {
                 topRight: Radius.circular(20)),
           color:Color(color)
         ),child:
-        Column(
+        Column(mainAxisAlignment:MainAxisAlignment.spaceEvenly,
           children: [
+
            Image.asset(imagepath),
-            Text(text,style: TextStyle(fontSize: 22,color: Colors.white),)
+
+            Text(text,style: TextStyle(fontSize: 22,color: Colors.white),),
+
           ],
         ),
       ),

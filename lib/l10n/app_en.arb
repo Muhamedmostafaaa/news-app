@@ -1,0 +1,14 @@
+{
+    "newsapp": "News App",
+    "category": "Category",
+    "settings": "Settings",
+    "pick": "Pick your Category of Interset",
+    "sports": "Sports",
+    "health": "Health",
+    "bussines": "Bussines",
+    "environment": "Environment",
+    "science": "Science",
+    "politics": "Politics",
+    "language": "Language"
+
+}

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:news_app/categoryscreen/categroydesign.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:news_app/model/sourcesresponse.dart';
 import 'package:news_app/newsscreen/newsfragment.dart';
 import 'package:news_app/newsscreen/tabitem.dart';
@@ -31,7 +31,7 @@ class _newsscreendesignState extends State<newsscreendesign> {
           centerTitle: true,
           title: Text(
             categroyselected.isEmpty
-                ? 'News app'
+                ? AppLocalizations.of(context)!.newsapp
                 : categroyselected.toUpperCase(),
             style: TextStyle(color: Colors.white, fontSize: 22),
           ),
