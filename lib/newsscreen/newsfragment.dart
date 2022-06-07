@@ -85,5 +85,17 @@ class _newsfragmentState extends State<newsfragment> {
   }
 
 }
-
+Future<Articleresponse> getdataforsearch(query) async {
+  Uri uri = Uri.https('newsapi.org', '/v2/everything', {
+    'apiKey': 'e8029b498b744fc39fc86211348d7850',
+    'q':query
+  });
+  final response = await http.get(uri);
+  print(response.body);
+  if (response.statusCode == 200) {
+    return Articleresponse.fromJson(jsonDecode(response.body));
+  } else {
+    throw(Exception(response.body));
+  }
+}
 

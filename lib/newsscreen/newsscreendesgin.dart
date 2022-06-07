@@ -9,6 +9,9 @@ import 'package:news_app/newsscreen/newsfragment.dart';
 import 'package:news_app/newsscreen/tabitem.dart';
 import 'package:news_app/sidemenu/sidemenudesign.dart';
 
+import '../model/articleresponse.dart';
+import 'articledesign.dart';
+
 class newsscreendesign extends StatefulWidget {
   static final ROUTE_NAME = 'HOME SCREEN';
 
@@ -28,6 +31,11 @@ class _newsscreendesignState extends State<newsscreendesign> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: (){
+            showSearch(context: context, delegate: newssearch());
+          }, icon:Icon (Icons.search))
+        ],
           centerTitle: true,
           title: Text(
             categroyselected.isEmpty
@@ -117,4 +125,52 @@ class _newsscreendesignState extends State<newsscreendesign> {
       throw (Exception(response.body));
     }
   }
+}
+class newssearch extends SearchDelegate{
+ late  Future<Articleresponse>response ;
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+   return[
+     IconButton(onPressed: (){
+       showResults(context);
+     }, icon: Icon(Icons.search))
+   ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(onPressed: (){
+      Navigator.pop(context);
+    }, icon: Icon(Icons.clear));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    response=getdataforsearch(query);
+   return FutureBuilder<Articleresponse>(
+     future: response, builder: (context, snapshot) {
+     if (snapshot.hasData) {
+       return ListView.builder(
+
+
+           itemCount: snapshot.data!.articles!.length,itemBuilder: (context, index) =>
+           articldesign(snapshot.data!.articles![index]));
+
+
+     } else
+     if(snapshot.hasError)
+     {
+       return Text('error');
+     } else {
+       return
+         Center(child: CircularProgressIndicator(),);
+     }
+   },);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return Text('');
+  }
+
 }
